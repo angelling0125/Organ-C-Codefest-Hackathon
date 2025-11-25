@@ -1,7 +1,13 @@
 fastapi
 uvicorn
-pydantic
 pandas
 numpy
 scikit-learn
 prophet
+joblib
+python-dateutil
+pydantic
+python-multipart
+plotly
+sqlalchemy
+psycopg2-binary
