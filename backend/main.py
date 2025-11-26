@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routes.iot import router as iot_router
 from routes.forecast import router as forecast_router
 from routes.anomaly import router as anomaly_router
 from routes.kpi import router as kpi_router
@@ -53,6 +54,7 @@ def health_check():
 # ============================================
 # API v1 ROUTES
 # ============================================
+app.include_router(iot_router, prefix=f"{API_V1_PREFIX}/iot", tags=["IoT Ingestion"])
 app.include_router(stores_router, prefix=f"{API_V1_PREFIX}/stores", tags=["Stores"])
 app.include_router(recommendations_router, prefix=f"{API_V1_PREFIX}/recommendations", tags=["Recommendations"])
 app.include_router(forecast_router, prefix=f"{API_V1_PREFIX}/forecast", tags=["Forecast"])
