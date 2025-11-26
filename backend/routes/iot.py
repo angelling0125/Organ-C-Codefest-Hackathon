@@ -61,7 +61,8 @@ def iot_ingest(data: IoTInput, db: Session = Depends(get_db)):
         timestamp=data.timestamp,
         value=data.Weekly_Sales,
         score=anomaly_score,
-        is_anomaly=(anomaly_flag == -1)
+        is_anomaly = 1 if anomaly_flag == -1 else 0
+
     ))
 
     # 2) clustering
