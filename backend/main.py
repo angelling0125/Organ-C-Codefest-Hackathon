@@ -19,6 +19,9 @@ from routes.stores import router as stores_router
 from routes.recommendations import router as recommendations_router
 from routes.websocket import router as websocket_router  # WebSocket routes
 from routes.auth import router as auth_router  # Admin authentication routes
+from routes.model_accuracy import router as model_accuracy_router  # Model accuracy evaluation
+from routes.backtest import router as backtest_router  # Backtest comparison
+from routes.backtest_mock import router as backtest_mock_router  # Mock backtest (Windows workaround)
 from routes.schemas import HealthResponse
 
 # DATABASE
@@ -119,6 +122,11 @@ app.include_router(websocket_router, prefix="/ws", tags=["🔌 WebSocket"])
 # API v1 ROUTES
 # ============================================
 app.include_router(auth_router, prefix=f"{API_V1_PREFIX}/auth", tags=["🔐 Authentication"])
+app.include_router(model_accuracy_router, prefix=f"{API_V1_PREFIX}/model-accuracy", tags=["📊 Model Accuracy"])
+# Use mock backtest for Windows (Prophet Stan backend has issues)
+# Uncomment the real backtest router if Prophet works on your system
+app.include_router(backtest_mock_router, prefix=f"{API_V1_PREFIX}/backtest", tags=["🔬 Backtest Comparison"])
+# app.include_router(backtest_router, prefix=f"{API_V1_PREFIX}/backtest", tags=["🔬 Backtest Comparison"])
 app.include_router(iot_router, prefix=f"{API_V1_PREFIX}/iot", tags=["IoT Ingestion"])
 app.include_router(stores_router, prefix=f"{API_V1_PREFIX}/stores", tags=["Stores"])
 app.include_router(recommendations_router, prefix=f"{API_V1_PREFIX}/recommendations", tags=["Recommendations"])

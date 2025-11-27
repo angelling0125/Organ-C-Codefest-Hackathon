@@ -452,6 +452,178 @@ export async function fetchCluster(data: {
 }
 
 // ============================================
+// MODEL ACCURACY
+// ============================================
+export interface ForecastAccuracyMetrics {
+  mae: number;
+  rmse: number;
+  mape: number;
+  mdape?: number;
+  coverage?: number;
+  store_id?: number;
+  stores_evaluated?: number;
+  evaluation_date: string;
+}
+
+export interface AnomalyAccuracyMetrics {
+  anomaly_detection_rate: number;
+  normal_detection_rate: number;
+  total_samples: number;
+  anomalies_detected: number;
+  normal_samples: number;
+  avg_anomaly_score?: number;
+  avg_normal_score?: number;
+  score_std: number;
+  evaluation_date: string;
+  note?: string; // Optional note about the metrics
+}
+
+export interface OverallAccuracyMetrics {
+  overall_confidence: number;
+  forecast_confidence: number;
+  anomaly_confidence: number;
+  forecast_metrics: ForecastAccuracyMetrics;
+  anomaly_metrics: AnomalyAccuracyMetrics;
+  evaluation_date: string;
+}
+
+export async function fetchForecastAccuracy(storeId?: number): Promise<ForecastAccuracyMetrics> {
+  try {
+    const url = storeId 
+      ? `${API_V1}/model-accuracy/forecast?store_id=${storeId}`
+      : `${API_V1}/model-accuracy/forecast`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("API error");
+    return await res.json();
+  } catch (err) {
+    console.warn("fetchForecastAccuracy failed", err);
+    return {
+      mae: 0,
+      rmse: 0,
+      mape: 0,
+      evaluation_date: new Date().toISOString()
+    };
+  }
+}
+
+export async function fetchAnomalyAccuracy(): Promise<AnomalyAccuracyMetrics> {
+  try {
+    const res = await fetch(`${API_V1}/model-accuracy/anomaly`);
+    if (!res.ok) throw new Error("API error");
+    return await res.json();
+  } catch (err) {
+    console.warn("fetchAnomalyAccuracy failed", err);
+    return {
+      anomaly_detection_rate: 0,
+      normal_detection_rate: 0,
+      total_samples: 0,
+      anomalies_detected: 0,
+      normal_samples: 0,
+      score_std: 0,
+      evaluation_date: new Date().toISOString()
+    };
+  }
+}
+
+export async function fetchOverallAccuracy(storeId?: number): Promise<OverallAccuracyMetrics> {
+  try {
+    const url = storeId 
+      ? `${API_V1}/model-accuracy/overall?store_id=${storeId}`
+      : `${API_V1}/model-accuracy/overall`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("API error");
+    return await res.json();
+  } catch (err) {
+    console.warn("fetchOverallAccuracy failed", err);
+    // Return mock data structure
+    return {
+      overall_confidence: 0,
+      forecast_confidence: 0,
+      anomaly_confidence: 0,
+      forecast_metrics: {
+        mae: 0,
+        rmse: 0,
+        mape: 0,
+        evaluation_date: new Date().toISOString()
+      },
+      anomaly_metrics: {
+        anomaly_detection_rate: 0,
+        normal_detection_rate: 0,
+        total_samples: 0,
+        anomalies_detected: 0,
+        normal_samples: 0,
+        score_std: 0,
+        evaluation_date: new Date().toISOString()
+      },
+      evaluation_date: new Date().toISOString()
+    };
+  }
+}
+
+// ============================================
+// BACKTEST COMPARISON
+// ============================================
+export interface BacktestComparisonPoint {
+  date: string;
+  actual: number;
+  forecast: number;
+  forecast_lower?: number;
+  forecast_upper?: number;
+}
+
+export interface BacktestComparisonResult {
+  store_id: number;
+  comparison: BacktestComparisonPoint[];
+  metrics: {
+    mae: number;
+    rmse: number;
+    mape: number;
+  };
+  weeks_backtested: number;
+}
+
+export interface BacktestAggregateResult {
+  stores_evaluated: number;
+  aggregate_metrics: {
+    mae: number;
+    rmse: number;
+    mape: number;
+  };
+  store_results: BacktestComparisonResult[];
+  weeks_backtested: number;
+}
+
+export async function fetchBacktestComparison(storeId?: number, weeks: number = 12): Promise<BacktestComparisonResult | BacktestAggregateResult> {
+  try {
+    const url = storeId 
+      ? `${API_V1}/backtest/comparison?store_id=${storeId}&weeks=${weeks}`
+      : `${API_V1}/backtest/comparison?weeks=${weeks}`;
+    
+    console.log(`[Backtest] Fetching from: ${url}`);
+    const res = await fetch(url);
+    
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[Backtest] API error ${res.status}: ${errorText}`);
+      throw new Error(`API error ${res.status}: ${errorText}`);
+    }
+    
+    const data = await res.json();
+    console.log(`[Backtest] Received data:`, {
+      hasComparison: "comparison" in data,
+      comparisonLength: "comparison" in data ? (data as BacktestComparisonResult).comparison.length : 0,
+      storeId: "store_id" in data ? (data as BacktestComparisonResult).store_id : "N/A"
+    });
+    
+    return data;
+  } catch (err) {
+    console.error("[Backtest] fetchBacktestComparison failed:", err);
+    // Re-throw error so React Query can handle it properly
+    throw err;
+  }
+}
+
+// ============================================
 // HEALTH CHECK
 // ============================================
 export async function checkHealth(): Promise<boolean> {

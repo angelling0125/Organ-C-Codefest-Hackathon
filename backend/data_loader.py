@@ -32,3 +32,8 @@ def get_time_series(store_id: int | None = None) -> pd.DataFrame:
     df = df.sort_values("timestamp")
 
     return df[["timestamp", "value"]]
+
+
+def get_all_data() -> pd.DataFrame:
+    """Get all raw data without aggregation."""
+    return load_raw_data()

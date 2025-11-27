@@ -205,7 +205,7 @@ export default function DataUploadPanel({ onDataLoaded }: DataUploadPanelProps) 
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 flex items-center justify-center px-4 pt-20">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4 pt-20">
       <div className="max-w-2xl w-full">
         {/* Welcome Section */}
         <div className="text-center mb-12">
@@ -222,7 +222,7 @@ export default function DataUploadPanel({ onDataLoaded }: DataUploadPanelProps) 
         </div>
 
         {/* Upload Panel */}
-        <Card className="border-0 shadow-xl mb-8">
+        <Card className="futuristic-card shadow-xl mb-8">
           <CardContent className="p-8">
             <div className="space-y-6">
               {/* Instructions */}
@@ -250,7 +250,7 @@ export default function DataUploadPanel({ onDataLoaded }: DataUploadPanelProps) 
                   htmlFor="file-upload"
                   className={`block p-8 border-2 border-dashed rounded-xl text-center cursor-pointer transition-all ${
                     isLoading
-                      ? "border-border bg-slate-50 cursor-not-allowed opacity-75"
+                      ? "border-border/50 glass bg-card/50 cursor-not-allowed opacity-75"
                       : "border-primary/30 bg-primary/5 hover:border-primary hover:bg-primary/10"
                   }`}
                 >
@@ -268,11 +268,11 @@ export default function DataUploadPanel({ onDataLoaded }: DataUploadPanelProps) 
 
               {/* Error Message */}
               {uploadError && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-lg flex items-start gap-3 glass-card">
+                  <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-red-900">Upload Failed</p>
-                    <p className="text-sm text-red-800">{uploadError}</p>
+                    <p className="font-semibold text-red-400">Upload Failed</p>
+                    <p className="text-sm text-red-300">{uploadError}</p>
                   </div>
                 </div>
               )}
@@ -317,9 +317,9 @@ export default function DataUploadPanel({ onDataLoaded }: DataUploadPanelProps) 
           ].map((feature) => {
             const Icon = feature.icon;
             return (
-              <Card key={feature.title} className="border-0 text-center">
+              <Card key={feature.title} className="futuristic-card text-center hover-lift">
                 <CardContent className="p-6">
-                  <Icon className="w-8 h-8 text-primary mx-auto mb-3" />
+                  <Icon className="w-8 h-8 text-primary mx-auto mb-3 neon-glow" />
                   <h3 className="font-semibold text-foreground mb-2">
                     {feature.title}
                   </h3>
