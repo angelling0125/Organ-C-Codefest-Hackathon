@@ -482,9 +482,9 @@ export default function Dashboard() {
 
               <Card className="p-6 futuristic-card hover-lift">
                 <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    <p className="text-sm font-medium text-muted-foreground">Max Sales</p>
-                    <p className="text-2xl font-semibold text-foreground">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Max Sales</p>
+                    <p className="text-2xl font-semibold text-foreground whitespace-nowrap">
                       ${displayKPIMetrics.maxSales.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                     </p>
                   </div>
