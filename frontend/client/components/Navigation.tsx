@@ -24,14 +24,14 @@ export default function Navigation() {
                 <span className="text-white font-bold text-lg drop-shadow-lg">I</span>
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/50 to-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
               </div>
-              <span className="text-xl font-bold gradient-text hidden sm:block">IntelliStock</span>
+              <span className="text-xl sm:text-2xl font-bold gradient-text hidden sm:block font-heading">IntelliStock</span>
             </Link>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-6">
               <Link
                 to="/"
-                className="text-sm font-medium text-foreground/70 hover:text-primary smooth-transition relative group"
+                className="text-sm font-medium text-foreground/80 hover:text-primary smooth-transition relative group"
               >
                 Home
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full smooth-transition"></span>
@@ -39,7 +39,7 @@ export default function Navigation() {
               {isAuthenticated && (
                 <Link
                   to="/dashboard"
-                  className="text-sm font-medium text-foreground/70 hover:text-primary smooth-transition relative group"
+                  className="text-sm font-medium text-foreground/80 hover:text-primary smooth-transition relative group"
                 >
                   Dashboard
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full smooth-transition"></span>

@@ -27,11 +27,11 @@ export default function Index() {
                   🚀 Powered by AI & Advanced Analytics
                 </span>
               </div>
-              <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground font-heading">
                 Intelligent{" "}
                 <span className="gradient-text">Inventory Optimization</span>
               </h1>
-              <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
+              <p className="text-lg text-foreground/80 mb-8 leading-relaxed text-body">
                 Leverage machine learning for accurate demand forecasting,
                 statistical anomaly detection, and operations research heuristics
                 to optimize your inventory in real-time.
@@ -90,10 +90,10 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-secondary/5"></div>
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 gradient-text">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 gradient-text font-heading">
                 Powerful Features for Modern Supply Chains
               </h2>
-              <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+              <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
                 Our platform combines cutting-edge AI, statistical analysis, and
                 optimization algorithms to transform your inventory management.
               </p>
@@ -106,7 +106,7 @@ export default function Index() {
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center mb-4 neon-glow">
                     <Brain className="w-6 h-6 text-primary" />
                   </div>
-                  <CardTitle className="text-xl gradient-text">ML Demand Forecasting</CardTitle>
+                  <CardTitle className="text-xl sm:text-2xl gradient-text font-heading">ML Demand Forecasting</CardTitle>
                 </CardHeader>
                 <CardContent className="text-foreground/70">
                   Advanced machine learning models that predict demand patterns
@@ -121,7 +121,7 @@ export default function Index() {
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-secondary/30 to-secondary/10 flex items-center justify-center mb-4 neon-glow-secondary">
                     <Shield className="w-6 h-6 text-secondary" />
                   </div>
-                  <CardTitle className="text-xl gradient-text">Anomaly Detection</CardTitle>
+                  <CardTitle className="text-xl sm:text-2xl gradient-text font-heading">Anomaly Detection</CardTitle>
                 </CardHeader>
                 <CardContent className="text-foreground/70">
                   Statistical process control algorithms that detect unusual
@@ -136,7 +136,7 @@ export default function Index() {
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-400/30 to-green-400/10 flex items-center justify-center mb-4">
                     <Zap className="w-6 h-6 text-green-400" />
                   </div>
-                  <CardTitle className="text-xl gradient-text">Inventory Optimization</CardTitle>
+                  <CardTitle className="text-xl sm:text-2xl gradient-text font-heading">Inventory Optimization</CardTitle>
                 </CardHeader>
                 <CardContent className="text-foreground/70">
                   Operations research heuristics that optimize stock levels, order

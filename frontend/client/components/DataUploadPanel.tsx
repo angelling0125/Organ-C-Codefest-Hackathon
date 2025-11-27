@@ -212,10 +212,10 @@ export default function DataUploadPanel({ onDataLoaded }: DataUploadPanelProps) 
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary mb-6">
             <Database className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 font-heading">
             👋 WELCOME 👋
           </h1>
-          <p className="text-foreground/60">
+          <p className="text-foreground/70 text-base leading-relaxed">
             Powered by ML demand forecasting, statistical anomaly detection,
             and operations research optimization
           </p>
@@ -227,10 +227,10 @@ export default function DataUploadPanel({ onDataLoaded }: DataUploadPanelProps) 
             <div className="space-y-6">
               {/* Instructions */}
               <div>
-                <h2 className="text-xl font-semibold text-foreground mb-4">
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 font-heading">
                   Get Started
                 </h2>
-                <p className="text-foreground/70 mb-6">
+                <p className="text-foreground/70 mb-6 text-base leading-relaxed">
                   Upload your CSV files or try our demo data to see the platform in action.
                 </p>
               </div>
