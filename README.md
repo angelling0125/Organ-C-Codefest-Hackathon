@@ -83,13 +83,13 @@ Automatically creates alerts for high-risk events.
 
 Stores logs for:
 
-anomaly_logs
+-anomaly_logs
 
-cluster_logs
+-cluster_logs
 
-risk_logs
+-risk_logs
 
-alerts
+-alerts
 
 ## 🛠️ Tech Stack
 Backend
